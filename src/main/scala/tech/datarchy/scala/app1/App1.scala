@@ -6,29 +6,29 @@ object App1 {
        sing(10)
   }
   
-  def sing(bottles : Integer) : Unit = {
+  def sing(bottles : Int) : Unit = {
     
-    if (bottles == 0) {
+    (1 to bottles).reverse.foreach(bottle => {
+      sing_line(s"$bottle bottles of water on the wall, $bottle bottles of water\n", bottle)      
+      sing_line(s"take one down and pass it around, ${bottle - 1} bottles of water on the wall\n\n", bottle)
+    })
+    
+    sing_line(s"no more bottle of water on the wall, no more bottles on the wall\n\n", bottles)
+    
+    if (bottles == 1) {
       return 
     }
     
-    (1 to bottles).reverse.foreach(bottle => {
-      sing_line(s"$bottle bottles of water on the wall, $bottle bottles of water\n" )      
-      sing_line(s"take one down and pass it around, ${bottle - 1} bottles of water on the wall\n\n")
-    })
-    
-    sing_line(s"no more bottle of water on the wall, no more bottles on the wall\n\n")
-    
-    sing_line(s"go to the store and buy some more, ${bottles - 1} bottles of water on the wall...\n\n")
+    sing_line(s"go to the store and buy some more, ${bottles - 1} bottles of water on the wall...\n\n", bottles)
     
     sing(bottles - 1)
   }
   
-  def sing_line(line : String) {
+  def sing_line(line : String, wait : Long) {
      line.split(" ").foreach(word => {
          print(word + " ")
-         Thread.sleep(300)
+         Thread.sleep(20 * wait)
      })
-     Thread.sleep(1000)
+     Thread.sleep(100 * wait)
   }
 }
