@@ -27,7 +27,7 @@ object App1 {
   def sing_line(line : String, wait : Long) {
      line.split(" ").foreach(word => {
          print(word + " ")
-         Thread.sleep(20 * wait)
+         Thread.sleep(10 * wait)
      })
      Thread.sleep(100 * wait)
   }
